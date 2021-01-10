@@ -1,5 +1,5 @@
 const gallery = document.querySelector("#gallery");
-
+const title = document.querySelector(".header-text-container > h1");
 //Fetch Data
 fetch("https://randomuser.me/api/?nat=us&page=1&results=12")
   .then((response) => response.json())
@@ -157,7 +157,7 @@ form.appendChild(searchInput);
 
 const submitBtn = document.createElement("input");
 submitBtn.type = "submit";
-submitBtn.value = "Search";
+submitBtn.value = "Go";
 submitBtn.id = "search-submit";
 submitBtn.className = "search-submit";
 form.appendChild(submitBtn);
@@ -169,25 +169,16 @@ const searchValue = searchInput.value.toLowerCase();
 function search(data) {
   form.addEventListener("submit", () => {
     const searchValue = searchInput.value;
-    for (let i = 0; i < data.results.length; i++) {
+    for (let i = 0; i < 12; i++) {
       const names = data.results[i].name.first.toLowerCase();
       if (names === searchValue.toLowerCase()) {
         searchGallery(data.results[i], data);
+        title.textContent = "RELOAD PAGE";
       }
     }
+    home(data);
   });
 }
-
-//
-// else {
-//         gallery.innerHTML = "<h1> No results.. Going back home! </h1>";
-//         window.setTimeout(() => {
-//           createGallery(data.results[i]);
-//           createModalCard(data.results[i], data);
-//           const h1 = document.querySelector("#gallery > h1");
-//           h1.remove();
-//         }, 3000);
-//       }
 
 function searchGallery(profile, data) {
   gallery.innerHTML = `
@@ -235,4 +226,20 @@ function searchModalCard(profile) {
       </div> 
       `
   );
+}
+
+function home(data) {
+  title.addEventListener("click", () => {
+    console.log(data.results.length);
+    let cards = document.querySelectorAll(".card");
+    const card = document.querySelector(".card");
+    const cardsLength = cards.length - 1;
+    title.textContent = "AWESOME STARTUP EMPLOYEE DIRECTORY";
+    for (let i = 0; i < data.results.length; i++) {
+      if (cardsLength === 0) {
+        card.remove();
+        createGallery(data.results[i]);
+      }
+    }
+  });
 }
