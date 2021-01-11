@@ -42,7 +42,7 @@ header h1 {
   transition: 0.4s ease-out;
   outline: none;
   box-shadow: 0px 2px 2px;
-  width: 15vw;
+  width: 7vw;
 }
 
 .search-input:active,
@@ -50,6 +50,7 @@ header h1 {
 .search-input:focus {
   border: 1px solid rgba(50, 50, 50, 0.9);
   box-shadow: 0px 4px 4px;
+  width: 15vw;
 }
 
 .search-submit {
@@ -213,6 +214,7 @@ header h1 {
   border-radius: 0.35em;
   transition: 0.4s ease-out;
   outline: none;
+  box-shadow: 0px 8px 8px;
 }
 
 /* ===================================== 
@@ -256,6 +258,8 @@ header h1 {
   .card:hover {
     background: rgba(255, 255, 255, 1);
     border: 1px solid rgba(50, 50, 50, 0.9);
+    transform: scale(1.1);
+    box-shadow: 0px 4px 5px 5px;
   }
 
   .card:hover .card-text {
